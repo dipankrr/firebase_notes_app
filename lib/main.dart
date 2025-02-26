@@ -16,8 +16,8 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       theme: ThemeData(
         scaffoldBackgroundColor: Colors.black,
-        //appBarTheme: AppBarTheme(backgroundColor:  Constants.backgColor),
-        // fontFamily: 'Diagramm',
+        appBarTheme: AppBarTheme(backgroundColor: Colors.black),
+        fontFamily: 'DMSans',
         brightness: Brightness.dark,
         useMaterial3: true,
       ),
