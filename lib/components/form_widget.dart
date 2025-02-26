@@ -4,11 +4,13 @@ class FormWidget extends StatelessWidget {
   final String hintTxt;
   final double fontSize;
   final FontWeight? fontWeight;
-  const FormWidget({super.key, required this.hintTxt, required this.fontSize, this.fontWeight, });
+  final TextEditingController controller;
+  const FormWidget({super.key, required this.hintTxt, required this.fontSize, this.fontWeight, required this.controller, });
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+        controller: controller,
         keyboardType: TextInputType.multiline,
 
       style: TextStyle(

@@ -6,8 +6,10 @@ class AddNotePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    TextEditingController titleController = TextEditingController();
+    TextEditingController noteController = TextEditingController();
     return Scaffold(
-      resizeToAvoidBottomInset: false,
+      //resizeToAvoidBottomInset: false,
       appBar: AppBar(
         title: Container( height: 20, width: 20, color: Colors.white54,),
 
@@ -18,9 +20,9 @@ class AddNotePage extends StatelessWidget {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              FormWidget(hintTxt: 'Title', fontSize: 28, fontWeight: FontWeight.bold,),
+              FormWidget(hintTxt: 'Title', fontSize: 28, fontWeight: FontWeight.bold, controller: titleController,),
 
-              FormWidget(hintTxt: 'Start writing . . . .', fontSize: 21,),
+              FormWidget(hintTxt: 'Start writing . . . .', fontSize: 21, controller: noteController,),
             ],
           ),
         ),
