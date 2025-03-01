@@ -39,7 +39,7 @@ class NoteCard extends StatelessWidget {
                             color:  Colors.white,
                           )),
                     ),
-                    Padding(
+                     Padding(
                       padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 12),
                       child: Text(noteText.toString(),
                         style: TextStyle(
@@ -48,7 +48,7 @@ class NoteCard extends StatelessWidget {
                           fontSize: 16,
                           color:  Colors.white,
                       )),
-                    )
+                    ),
                   ],
                 ),
               ),
