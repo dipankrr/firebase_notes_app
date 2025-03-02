@@ -3,8 +3,13 @@ import 'package:firebase_notes_app/pages/add_note.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
+import '../database/FirestoreDBHelper.dart';
+import '../models/note_model.dart';
+
 class Homepage extends StatelessWidget {
-  const Homepage({super.key});
+   Homepage({super.key});
+
+  final FirestoreDBHelper _dbHelper = FirestoreDBHelper();
 
   @override
   Widget build(BuildContext context) {
@@ -15,20 +20,36 @@ class Homepage extends StatelessWidget {
           //mainAxisSize: MainAxisSize.min,
           children: [
 
-          Expanded(
-            child: MasonryGridView.count(
-              itemCount: 10,
-              crossAxisCount: 2,
-              mainAxisSpacing: 8,
-              crossAxisSpacing: 5,
-              itemBuilder: (context, index) {
-                String text = "It does not include any special symbols  escape sequences or syntax issues. The text consists only of letters, serted into a string without modification. Whether you are using this in a programming language like Python, Dart, JavaScript, or any other language that supports single-quoted strings, you should not encounter any problems";
-              return
+            StreamBuilder<List<Note>>(
+                 stream: _dbHelper.getNotesStream(),
+                 builder: (context, snapshot) {
 
-                NoteCard(indx: 1, noteText: text, onIconTap: (){}, delFunc: (){}, titleText: 'This is titleThis is This is titletitleThis is title',);
-            },
-                  ),
-          ),
+                   if (snapshot.connectionState == ConnectionState.waiting) {
+                     return Expanded(child: Center(child: CircularProgressIndicator()));
+                   } else if (snapshot.hasError) {
+                     return Expanded(child: Center(child: Text("Error fetching notes")));
+                   } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
+                     return Expanded(child: Center(child: Text("No Notes Available")));
+                   }
+
+                   List<Note> notes = snapshot.data!;
+
+                   return Expanded(
+                     child: MasonryGridView.count(
+                       itemCount: notes.length,
+                       crossAxisCount: 2,
+                       mainAxisSpacing: 8,
+                       crossAxisSpacing: 5,
+                       itemBuilder: (context, index) {
+
+                         Note note = notes[index];
+                         return
+                           NoteCard(indx: 1, noteText: note.content, onIconTap: (){}, delFunc: (){}, titleText: note.title,);
+                       },
+                     ),
+                   );
+                 }
+            ),
 
           ],
         ),

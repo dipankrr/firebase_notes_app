@@ -1,6 +1,9 @@
 import 'package:firebase_notes_app/components/form_widget.dart';
 import 'package:flutter/material.dart';
 
+import '../database/FirestoreDBHelper.dart';
+import '../models/note_model.dart';
+
 class AddNotePage extends StatelessWidget {
   const AddNotePage({super.key});
 
@@ -8,10 +11,26 @@ class AddNotePage extends StatelessWidget {
   Widget build(BuildContext context) {
     TextEditingController titleController = TextEditingController();
     TextEditingController noteController = TextEditingController();
+
+    final FirestoreDBHelper _dbHelper = FirestoreDBHelper();
     return Scaffold(
       //resizeToAvoidBottomInset: false,
       appBar: AppBar(
-        title: Container( height: 20, width: 20, color: Colors.white54,),
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            IconButton(onPressed: () async {
+              // add note
+            await  _dbHelper.addNote(Note(
+              id: '',
+              title: titleController.text,
+              content: noteController.text,
+              timestamp: DateTime.now(),
+            ));
+            Navigator.pop(context);
+            }, icon: Icon(Icons.save))
+          ],
+        ),
 
       ),
 
