@@ -1,3 +1,4 @@
+import 'package:firebase_notes_app/components/coolbtn.dart';
 import 'package:firebase_notes_app/components/form_widget.dart';
 import 'package:flutter/material.dart';
 
@@ -42,6 +43,9 @@ class AddNotePage extends StatelessWidget {
               FormWidget(hintTxt: 'Title', fontSize: 28, fontWeight: FontWeight.bold, controller: titleController,),
 
               FormWidget(hintTxt: 'Start writing . . . .', fontSize: 21, controller: noteController,),
+
+              GradientButton(onPressed: (){}, text: 'Click here')
+
             ],
           ),
         ),
