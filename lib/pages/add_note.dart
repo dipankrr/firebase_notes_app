@@ -44,7 +44,6 @@ class AddNotePage extends StatelessWidget {
 
               FormWidget(hintTxt: 'Start writing . . . .', fontSize: 21, controller: noteController,),
 
-              GradientButton(onPressed: (){}, text: 'Click here')
 
             ],
           ),
