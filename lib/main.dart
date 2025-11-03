@@ -3,20 +3,15 @@ import 'package:firebase_notes_app/pages/homepage.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-void main() async {
+import 'package:supabase_flutter/supabase_flutter.dart';
+
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  if (kIsWeb){
-    await Firebase.initializeApp(options: const FirebaseOptions(apiKey: "AIzaSyC8qeFl8tk1cLacVyAFUktf93MGEIokTd4",
-        authDomain: "note-app-a4fe8.firebaseapp.com",
-        projectId: "note-app-a4fe8",
-        storageBucket: "note-app-a4fe8.firebasestorage.app",
-        messagingSenderId: "921624388283",
-        appId: "1:921624388283:web:12b6f953881251880aff9e",
-        measurementId: "G-N7VZ2L5TFV"));
-  }
-  else { await Firebase.initializeApp();
-  }
+  await Supabase.initialize(
+    url: 'https://oopkltlrlnlapqdfjemy.supabase.co',
+    anonKey: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9vcGtsdGxybG5sYXBxZGZqZW15Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjIxODc0MTAsImV4cCI6MjA3Nzc2MzQxMH0.8bS4uCkY1axCsYYJ4oAxlmdC4d10Rdm461xgzYkQCDQ',
+  );
 
   runApp(const MyApp());
 }

@@ -9,7 +9,7 @@ import '../models/note_model.dart';
 class Homepage extends StatelessWidget {
    Homepage({super.key});
 
-  final FirestoreDBHelper _dbHelper = FirestoreDBHelper();
+  final _dbHelper = SupabaseDBHelper();
 
   @override
   Widget build(BuildContext context) {

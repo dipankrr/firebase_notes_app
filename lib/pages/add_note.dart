@@ -13,7 +13,7 @@ class AddNotePage extends StatelessWidget {
     TextEditingController titleController = TextEditingController();
     TextEditingController noteController = TextEditingController();
 
-    final FirestoreDBHelper _dbHelper = FirestoreDBHelper();
+    final _dbHelper = SupabaseDBHelper();
     return Scaffold(
       //resizeToAvoidBottomInset: false,
       appBar: AppBar(
@@ -23,10 +23,10 @@ class AddNotePage extends StatelessWidget {
             IconButton(onPressed: () async {
               // add note
             await  _dbHelper.addNote(Note(
-              id: '',
+              id: 0,
               title: titleController.text,
               content: noteController.text,
-              timestamp: DateTime.now(),
+              createdAt: DateTime.now(),
             ));
             Navigator.pop(context);
             }, icon: Icon(Icons.save))
